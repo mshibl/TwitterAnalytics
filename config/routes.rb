@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  resources :sessions
   root 'sessions#welcome'
-
   get 'sessions/welcome'
 
   get '/auth/:provider/callback', to: 'sessions#create'
 
   resources :users
+  get 'users/signup'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

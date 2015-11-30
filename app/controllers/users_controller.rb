@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     # Ajax request for the twitter stream
       @screen_name = params[:screen_name]
       @welcome = "Hello #{@screen_name}"
-      # @user = User.find_by(screen_name: @screen_name)
+      @user = User.find_by(screen_name: @screen_name)
 
       # if request.xhr?
       #   timestamp = params[:timestamp].to_f
@@ -27,5 +27,13 @@ class UsersController < ApplicationController
       # @favorites = graph_data[2]
       # @data_changes = graph_data[3]
     # end
+  end
+
+  # def edit
+  #   @user = User.find(session[:user_id])
+  # end
+
+  def signup
+    @user = User.find(session[:user_id])
   end
 end

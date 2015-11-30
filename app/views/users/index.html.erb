@@ -1,1 +1,142 @@
-<%= @welcome%>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <style>
+    h1, h3, h4 {
+      font-family: 'Roboto', sans-serif;
+      font-size: 48px;
+      color: #7c8081;
+    }
+
+    h3 {
+      font-family: 'Roboto', sans-serif;
+      font-size: 32px;
+    }
+  </style>
+</head>
+
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<%#= javascript_include_tag 'users.js' %>
+<!-- Twitter Stream Widget -->
+
+  <script src="https://platform.twitter.com/widgets.js">
+    window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+    return t;
+    }(document, "script", "twitter-wjs"));
+  </script>
+
+<div class="profile-display">
+  <table id="buttons">
+    <tr>
+
+      <td>
+        <p class="logout"><%= button_to "logout", {:controller => 'sessions', :action => 'destroy', :id => session[:user_id] }, {:method => :delete}%></p>
+      </td>
+
+  <!-- Email Registration -->
+      <td>
+      <h3><%=button_to "Register", {:controller => 'users', :action => 'signup'}, {id: 'register-button', class: 'button'} %></h3>
+      </td>
+
+
+  <!-- Search twitter users box -->
+        <%=form_tag("/users/show", method: "get") do %>
+      <td>
+          <%=text_field_tag "screen_name", nil, options = {style:"height:3.05em; min-width: 15em; margin-left: .50em; margin-right: 0.50em; position: relative",  placeholder: "search twitter user"} %>
+      </td>
+      <td>
+          <%= submit_tag("Search")%>
+        <%end%>
+      </td>
+    </tr>
+    <tr>
+    <%unless User.find(session[:user_id]).screen_name == @screen_name%>
+      <td>
+        <% main_user = User.find(session[:user_id]).screen_name%>
+        <p class="logout"><%= button_to "Go Back", users_path(screen_name: main_user)%></p>
+      </td>
+    <%end%>
+    </tr>
+  </table>
+          <% if flash[:notice] %>
+            <div class="notice"><b><%= flash[:notice] %></b></div>
+          <% end %>
+  <%if User.find(session[:user_id]).screen_name == @screen_name%>
+    <h1 id="greeting">Welcome, <%=@user.name%></h1>
+    <br>
+  <%end%>
+
+  <!-- Showing user's information -->
+    <h3 class="info">Total Tweets: <%=@num_tweets%></h3>
+    <h3 class="info">Following: <%=@num_following%></h3>
+    <h3 class="info">Current Followers: <%=@followers_count%></h3>
+    <div class="profile-picture">
+      <img src="<%=@profile_picture%>"/>
+    </div>
+
+  <!-- container that holds the graph -->
+    <div id="container" style="height: 400px; min-width: 310px"></div>
+
+
+  <!-- Most recent tweets -->
+    <div id='timeline'>
+      <h3 id="tweet-label">Tweets</h3>
+      <h3 id="tweets"> </h3>
+  <!-- div to include the tweets at a certain time -->
+    <div id="new-tweets"></div>
+        <div class="tweet-stream">
+          <a class="twitter-timeline" href="https://twitter.com/<%=@screen_name%>" data-widget-id="668249419062509568" data-screen-name="<%=@screen_name%>" data-chrome="noheader nofooter"></a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+    </div>
+
+
+  <!-- Followers and Unfollowers at a specific point of time -->
+    <%if User.find(session[:user_id]).screen_name == @screen_name%>
+      <div class="follower-activity">
+        <div id="followers-div">
+            <h3>New Followers</h3>
+          <div>
+            <table id="new_followers" style="width:20%"></table>
+            </div>
+          </div>
+
+        <div id="unfollowers-div">
+          <h3>Unfollowers</h3>
+          <div>
+            <table id="unfollowers" style="width:20%"></table>
+        </div>
+        </div>
+      </div>
+    <%end%>
+</div>
+
+<!-- Hidden Data-->
+  <p class="screen_name"><%=@screen_name %></p>
+
+  <p class="xData">
+    <%#= @xData %>
+  </p>
+
+  <p class="followers_record">
+    <%#= @followers_record %>
+  </p>
+
+  <p class="favorites">
+    <%#= @favorites %>
+  </p>
+
+  <p class="data_changes">
+    <%#= @data_changes %>
+  </p>

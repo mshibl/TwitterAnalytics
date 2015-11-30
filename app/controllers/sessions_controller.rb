@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def welcome
-    @message = "Hello World"
   end
 
   def create
@@ -11,10 +10,10 @@ class SessionsController < ApplicationController
     redirect_to users_path(screen_name: @user.screen_name)
   end
 
-  # def destroy
-  #   session.delete(:user_id)
-  #   redirect_to root_path
-  # end
+  def destroy
+    session.delete(:user_id)
+    redirect_to root_path
+  end
 
   protected
 
