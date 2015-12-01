@@ -2,7 +2,6 @@ class UsersController < ApplicationController
     def index
     # Ajax request for the twitter stream
       @screen_name = params[:screen_name]
-      @welcome = "Hello #{@screen_name}"
       @user = User.find_by(screen_name: @screen_name)
 
       # if request.xhr?
@@ -11,7 +10,7 @@ class UsersController < ApplicationController
       #   render :json => tweets_to_display
       # else
 
-      # # User information to be displayed
+      # User information to be displayed
       # user_information = get_user_info(@screen_name)
       # @profile_picture = user_information[:profile_picture]
       # @num_tweets = user_information[:num_tweets]

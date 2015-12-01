@@ -1,52 +1,24 @@
-<head>
-  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-  <style>
-    h1, h3, h4 {
-      font-family: 'Roboto', sans-serif;
-      font-size: 48px;
-      color: #7c8081;
-    }
-
-    h3 {
-      font-family: 'Roboto', sans-serif;
-      font-size: 32px;
-    }
-  </style>
-</head>
-
+<!-- Graph -->
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-<%#= javascript_include_tag 'users.js' %>
+<%= javascript_include_tag 'graph.js' %>
+
 <!-- Twitter Stream Widget -->
+<%= javascript_include_tag 'twitter_stream.js'%>
 
-  <script src="https://platform.twitter.com/widgets.js">
-    window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    fjs.parentNode.insertBefore(js, fjs);
 
-    t._e = [];
-    t.ready = function(f) {
-      t._e.push(f);
-    };
-    return t;
-    }(document, "script", "twitter-wjs"));
-  </script>
 
 <div class="profile-display">
   <table id="buttons">
     <tr>
-
+  <!-- Logout Button -->
       <td>
         <p class="logout"><%= button_to "logout", {:controller => 'sessions', :action => 'destroy', :id => session[:user_id] }, {:method => :delete}%></p>
       </td>
 
   <!-- Email Registration -->
       <td>
-      <h3><%=button_to "Register", {:controller => 'users', :action => 'signup'}, {id: 'register-button', class: 'button'} %></h3>
+        <h3><%=button_to "Register", {:controller => 'users', :action => 'signup'}, {id: 'register-button', class: 'button'} %></h3>
       </td>
 
 
@@ -60,6 +32,8 @@
         <%end%>
       </td>
     </tr>
+
+  <!-- Button to go back if not on main account -->
     <tr>
     <%unless User.find(session[:user_id]).screen_name == @screen_name%>
       <td>
@@ -69,24 +43,28 @@
     <%end%>
     </tr>
   </table>
-          <% if flash[:notice] %>
-            <div class="notice"><b><%= flash[:notice] %></b></div>
-          <% end %>
+
+  <!-- Flash Notices -->
+  <% if flash[:notice] %>
+    <div class="notice"><b><%= flash[:notice] %></b></div>
+  <% end %>
+
+  <!-- User welcome "if user exists" -->
   <%if User.find(session[:user_id]).screen_name == @screen_name%>
     <h1 id="greeting">Welcome, <%=@user.name%></h1>
     <br>
   <%end%>
 
   <!-- Showing user's information -->
-    <h3 class="info">Total Tweets: <%=@num_tweets%></h3>
-    <h3 class="info">Following: <%=@num_following%></h3>
-    <h3 class="info">Current Followers: <%=@followers_count%></h3>
-    <div class="profile-picture">
-      <img src="<%=@profile_picture%>"/>
-    </div>
+  <h3 class="info">Total Tweets: <%=@num_tweets%></h3>
+  <h3 class="info">Following: <%=@num_following%></h3>
+  <h3 class="info">Current Followers: <%=@followers_count%></h3>
+  <div class="profile-picture">
+    <img src="<%=@profile_picture%>"/>
+  </div>
 
   <!-- container that holds the graph -->
-    <div id="container" style="height: 400px; min-width: 310px"></div>
+  <div id="container" style="height: 400px; min-width: 310px"></div>
 
 
   <!-- Most recent tweets -->
@@ -100,7 +78,6 @@
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
     </div>
-
 
   <!-- Followers and Unfollowers at a specific point of time -->
     <%if User.find(session[:user_id]).screen_name == @screen_name%>
@@ -123,7 +100,7 @@
 </div>
 
 <!-- Hidden Data-->
-  <p class="screen_name"><%=@screen_name %></p>
+  <p class="screen_name"><%#=@screen_name %></p>
 
   <p class="xData">
     <%#= @xData %>
