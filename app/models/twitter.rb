@@ -12,9 +12,40 @@ class Twitter < ActiveRecord::Base
     Twitter.get_response(auth_token, auth_secret, api_call)
   end
 
-  def self.update_records
-    History.create(user_id: 1, followers_count: 22)
+  def self.update_records(user_id)
+    user = User.find(user_id)
+
+    # Creating history record for user:
+    user_information = Twitter.execute({user: user, request_type: "users/show.json?screen_name=#{user.screen_name}"})
+    followers_count = user_information["followers_count"]
+    # favorites_count = user_information["favourites_count"]
+    History.create(user_id: user_id, followers_count: followers_count)
+
+    # Updating user's followers list:
+    # unless user.auth_token == nil
+    #   Twitter.update_followers_list(user_id,followers_count)
+    # end
   end
+
+  # def self.update_followers_list(user_id,followers_count)
+  #   followership_info = Twitter.get_followers_and_unfollowers(user_id,followers_count)
+  #   event_id = History.where(user_id: user_id).order(:created_at).last.id
+
+  #   # Add new followers
+  #   followership_info[:new_followers].each do |uid|
+  #     follower = User.find_by(uid: uid)
+  #     follower ||= User.create(uid: uid)
+  #     Relationship.where(user_id: user_id).find_by(follower_id: follower.id) || Relationship.create(user_id: user_id, follower_id: follower.id)
+  #     Follow.create(follower_id: follower.id, follow_event_id: event_id)
+  #   end
+
+  #   # Delete unfollowers
+  #   followership_info[:unfollowers].each do |uid|
+  #     unfollower = User.find_by(uid: uid)
+  #     Relationship.where(user_id: user_id).find_by(follower_id: unfollower.id).delete
+  #     Unfollow.create(unfollower_id: unfollower.id, unfollow_event_id: event_id)
+  #   end
+  # end
 
   # Methods for setting up the request:
   ######################################

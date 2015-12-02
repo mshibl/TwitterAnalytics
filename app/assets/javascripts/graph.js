@@ -1,6 +1,5 @@
 $(function () {
     var screen_name = $('p.screen_name').html();
-    console.log(screen_name)
     var xData = JSON.parse($('p.xData').text());
     var followers_record = JSON.parse($('p.followers_record').text());
     var favorites = JSON.parse($('p.favorites').text());

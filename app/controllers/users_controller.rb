@@ -20,13 +20,12 @@ class UsersController < ApplicationController
         @followers_count = History.where(user_id: user_information[:user_id]).last.followers_count
       end
 
-      # # Getting the graph data
-      # graph_data = UsersHelper.get_chart(@user)
-      # @xData = graph_data[0]
-      # @followers_record = graph_data[1]
-      # @favorites = graph_data[2]
-      # @data_changes = graph_data[3]
-    # end
+      # Getting the graph data
+      graph_data = UsersHelper.get_chart(@user)
+      @xData = graph_data[0]
+      @followers_record = graph_data[1]
+      @favorites = graph_data[2]
+      @data_changes = graph_data[3]
   end
 
   # def edit

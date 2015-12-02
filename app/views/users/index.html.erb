@@ -60,7 +60,7 @@
   <h3 class="info">Following: <%=@num_following%></h3>
   <h3 class="info">Current Followers: <%=@followers_count%></h3>
   <div class="profile-picture">
-    <img src="<%=@profile_picture%>"/>
+    <img src="<%=@profile_picture%>">
   </div>
 
   <!-- container that holds the graph -->
@@ -72,11 +72,11 @@
       <h3 id="tweet-label">Tweets</h3>
       <h3 id="tweets"> </h3>
   <!-- div to include the tweets at a certain time -->
-    <div id="new-tweets"></div>
-        <div class="tweet-stream">
-          <a class="twitter-timeline" href="https://twitter.com/<%=@screen_name%>" data-widget-id="668249419062509568" data-screen-name="<%=@screen_name%>" data-chrome="noheader nofooter"></a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        </div>
+      <div id="new-tweets"></div>
+      <div class="tweet-stream">
+        <a class="twitter-timeline" href="https://twitter.com/<%=@screen_name%>" data-widget-id="668249419062509568" data-screen-name="<%=@screen_name%>" data-chrome="noheader nofooter"></a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </div>
     </div>
 
   <!-- Followers and Unfollowers at a specific point of time -->
@@ -86,34 +86,34 @@
             <h3>New Followers</h3>
           <div>
             <table id="new_followers" style="width:20%"></table>
-            </div>
           </div>
+        </div>
 
         <div id="unfollowers-div">
           <h3>Unfollowers</h3>
           <div>
             <table id="unfollowers" style="width:20%"></table>
-        </div>
+          </div>
         </div>
       </div>
     <%end%>
 </div>
 
 <!-- Hidden Data-->
-  <p class="screen_name"><%#=@screen_name %></p>
+  <p class="screen_name"><%=@screen_name %></p>
 
   <p class="xData">
-    <%#= @xData %>
+    <%= @xData %>
   </p>
 
   <p class="followers_record">
-    <%#= @followers_record %>
+    <%= @followers_record %>
   </p>
 
   <p class="favorites">
-    <%#= @favorites %>
+    <%= @favorites %>
   </p>
 
   <p class="data_changes">
-    <%#= @data_changes %>
+    <%= @data_changes %>
   </p>
