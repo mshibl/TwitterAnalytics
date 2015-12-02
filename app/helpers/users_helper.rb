@@ -1,4 +1,8 @@
 module UsersHelper
+  def self.convert_timestamps(datetime)
+    milliseconds = datetime.to_f * 1000
+  end
+
   def get_user_info(screen_name)
     requestor = User.find(session[:user_id])
 
@@ -48,12 +52,48 @@ module UsersHelper
       time = UsersHelper.convert_timestamps(record.created_at)
       @xData << time
       @followers_record << record.followers_count
-      @favorites << record.favorites_count
+      # @favorites << record.favorites_count
       # @retweets << record.retweet_count
       @data_changes[time] = {new_followers: new_followers, unfollowers: unfollowers}
     end
 
     # return [@xData.to_json, @followers_record.to_json, @favorites.to_json, @retweets.to_json, @data_changes.to_json]
     return [@xData.to_json, @followers_record.to_json, @favorites.to_json, @data_changes.to_json]
+  end
+
+  def self.get_tweet_collection(user)
+    tweets_array = []
+    response = Twitter.execute({user: user, request_type: "statuses/user_timeline.json?count=200&screen_name=#{user.screen_name}"})
+    last_id = response[-1]["id"]
+    tweets_array << response
+    15.times do
+    response = Twitter.execute({user: user, request_type:"statuses/user_timeline.json?count=200&max_id=#{last_id}&screen_name=#{user.screen_name}"})
+      if last_id == response[-1]["id"]
+        break
+      else
+        last_id = response[-1]["id"]
+        tweets_array << response
+      end
+    end
+
+    tweets_array.flatten!
+    condensed_tweets = []
+    tweets_array.each do |tweet|
+      date = DateTime.parse(tweet["created_at"])
+      date = date.strftime('%Q').to_f #converts to milliseconds
+      condensed_tweets << [tweet["id_str"], date]
+    end
+    condensed_tweets
+  end
+
+  def self.get_matching_tweets(user, timestamp)
+    tweets = UsersHelper.get_tweet_collection(user)
+    thirty_min_ago = timestamp - 1800000
+    collection = tweets.select do |tweet|
+      tweet[1].to_f >= thirty_min_ago && tweet[1].to_f <= timestamp
+    end
+    tweet_ids = []
+    collection.each {|tweet| tweet_ids << tweet[0]}
+    tweet_ids
   end
 end
