@@ -12,6 +12,9 @@ class Twitter < ActiveRecord::Base
     Twitter.get_response(auth_token, auth_secret, api_call)
   end
 
+  def self.update_records
+    History.create(user_id: 1, followers_count: 22)
+  end
 
   # Methods for setting up the request:
   ######################################
