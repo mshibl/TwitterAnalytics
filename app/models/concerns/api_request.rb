@@ -1,0 +1,4 @@
+module Requestable
+  extend
+
+end

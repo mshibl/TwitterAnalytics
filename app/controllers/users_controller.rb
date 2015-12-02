@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include UsersHelper
     def index
     # Ajax request for the twitter stream
       @screen_name = params[:screen_name]
@@ -11,13 +12,13 @@ class UsersController < ApplicationController
       # else
 
       # User information to be displayed
-      # user_information = get_user_info(@screen_name)
-      # @profile_picture = user_information[:profile_picture]
-      # @num_tweets = user_information[:num_tweets]
-      # @num_following = user_information[:num_following]
-      # if History.find_by(user_id: user_information[:user_id])
-      #   @followers_count = History.where(user_id: user_information[:user_id]).last.followers_count
-      # end
+      user_information = get_user_info(@screen_name)
+      @profile_picture = user_information[:profile_picture]
+      @num_tweets = user_information[:num_tweets]
+      @num_following = user_information[:num_following]
+      if History.find_by(user_id: user_information[:user_id])
+        @followers_count = History.where(user_id: user_information[:user_id]).last.followers_count
+      end
 
       # # Getting the graph data
       # graph_data = UsersHelper.get_chart(@user)
