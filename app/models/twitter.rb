@@ -22,30 +22,58 @@ class Twitter < ActiveRecord::Base
     History.create(user_id: user_id, followers_count: followers_count)
 
     # Updating user's followers list:
-    # unless user.auth_token == nil
-    #   Twitter.update_followers_list(user_id,followers_count)
-    # end
+    unless user.auth_token == nil
+      Twitter.update_followers_list(user_id,followers_count)
+    end
   end
 
-  # def self.update_followers_list(user_id,followers_count)
-  #   followership_info = Twitter.get_followers_and_unfollowers(user_id,followers_count)
-  #   event_id = History.where(user_id: user_id).order(:created_at).last.id
+  # Get the latest full list of followers from Twitter (up to 75,000 followers only)
+  def self.get_full_followers_list(user_id,followers_count)
+    user = User.find(user_id)
+    num_of_pages = ((followers_count / 5000) + 1)
+    cursor = -1
+    ordered_followers = []
 
-  #   # Add new followers
-  #   followership_info[:new_followers].each do |uid|
-  #     follower = User.find_by(uid: uid)
-  #     follower ||= User.create(uid: uid)
-  #     Relationship.where(user_id: user_id).find_by(follower_id: follower.id) || Relationship.create(user_id: user_id, follower_id: follower.id)
-  #     Follow.create(follower_id: follower.id, follow_event_id: event_id)
-  #   end
+    num_of_pages.times do
+      followers_list = Twitter.execute({user: user, request_type: "followers/ids.json?stringify_ids=true&cursor=#{cursor}&user_id=#{user.uid}"})
+      ordered_followers << followers_list["ids"].reverse
+      cursor = followers_list["next_cursor"]
+    end
+    return ordered_followers.flatten!
+  end
 
-  #   # Delete unfollowers
-  #   followership_info[:unfollowers].each do |uid|
-  #     unfollower = User.find_by(uid: uid)
-  #     Relationship.where(user_id: user_id).find_by(follower_id: unfollower.id).delete
-  #     Unfollow.create(unfollower_id: unfollower.id, unfollow_event_id: event_id)
-  #   end
-  # end
+  def self.update_followers_list(user_id,followers_count)
+    followership_info = Twitter.get_followers_and_unfollowers(user_id,followers_count)
+    event_id = History.where(user_id: user_id).order(:created_at).last.id
+
+    # Add new followers
+    followership_info[:new_followers].each do |uid|
+      follower = User.find_by(uid: uid)
+      follower ||= User.create(uid: uid)
+      Relationship.where(user_id: user_id).find_by(follower_id: follower.id) || Relationship.create(user_id: user_id, follower_id: follower.id)
+      Follow.create(follower_id: follower.id, follow_event_id: event_id)
+    end
+
+    # Delete unfollowers
+    followership_info[:unfollowers].each do |uid|
+      unfollower = user.find_by(uid: uid)
+      Relationship.where(user_id: user_id).find_by(follower_id: unfollower.id).delete
+      Unfollow.create(unfollower_id: unfollower.id, unfollow_event_id: event_id)
+    end
+  end
+
+  # Get a hash of followers and unfollowers since the last recorded history of a given user
+  def self.get_followers_and_unfollowers(user_id,followers_count)
+    user = User.find(user_id)
+
+    old_list_of_followers = user.followers.select(:uid).map(&:uid)
+    new_list_of_followers = Twitter.get_full_followers_list(user.id,followers_count)
+
+    followership_info = {
+      new_followers: (new_list_of_followers - old_list_of_followers),
+      unfollowers: (old_list_of_followers - new_list_of_followers)
+    }
+  end
 
   # Methods for setting up the request:
   ######################################

@@ -7,14 +7,17 @@ module Clockwork
     puts "Running #{job}"
   end
 
-  every(1.minute, 'test clockwork on heroku') do
-    Twitter.update_records
+  every(2.minutes, 'update records for all users') do
+    User.where.not(screen_name: nil).each do |user|
+      Twitter.update_records(user.id)
+    end
   end
 
+  # every(1.minute, 'test clockwork on heroku') do
+  #   Twitter.update_records
+  # end
+
   # every(30.minutes, 'update_all_users_followers_count') do
-  #   User.where.not(screen_name: nil).each do |user|
-  #     GetFollowersCountWorker.perform_async(user.id)
-  #   end
   # end
 
   # every(20.minutes, 'track_multiple_twitter_accounts') do
