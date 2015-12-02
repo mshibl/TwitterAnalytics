@@ -8,7 +8,7 @@ module Clockwork
   end
 
   every(1.minute, 'test clockwork on heroku') do
-    History.create(user_id: 1, followers_count: 0)
+    TwitterWorker.perform_async
   end
 
   # every(30.minutes, 'update_all_users_followers_count') do

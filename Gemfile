@@ -26,6 +26,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Clockwork is a time-based job scheduler. It runs as a lightweight, long-running Ruby process which sits alongside your web processes.
 gem 'clockwork', require: false
 
+#use sidekiq to run background jobs
+gem 'sidekiq'
+#sinatra and slim allow us to view the web interface of sidekiq
+gem 'sinatra', require: false
+gem 'slim'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
