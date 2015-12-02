@@ -13,6 +13,9 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  # Sets up Redis connection information for development
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:d76fb41c9c9e4ac9be60949743b0e6ef@herring.redistogo.com:9512/'
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

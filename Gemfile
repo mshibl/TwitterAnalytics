@@ -32,6 +32,9 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
 
+# Redis gem to process sidekiq background jobs
+gem 'redis'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
