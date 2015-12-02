@@ -8,7 +8,7 @@ module Clockwork
   end
 
   every(1.minute, 'test clockwork on heroku') do
-    TwitterWorker.perform_async
+    TwitterWorker.perform
   end
 
   # every(30.minutes, 'update_all_users_followers_count') do

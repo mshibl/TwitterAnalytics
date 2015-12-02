@@ -1,10 +1,10 @@
 class TwitterWorker
-    include Sidekiq::Worker
+    # include Sidekiq::Worker
     # sidekiq_options :queue => :critical
-    sidekiq_options :retry => false
+    # sidekiq_options :retry => false
 
     def perform
-      History.create(user_id: 1, followers_count: 1)
+      History.create(user_id: 1, followers_count: 22)
     end
     # def perform(user_id)
     #     user = User.find(user_id)
