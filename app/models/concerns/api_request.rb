@@ -1,4 +1,0 @@
-module Requestable
-  extend
-
-end
