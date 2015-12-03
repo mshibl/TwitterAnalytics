@@ -1,0 +1,210 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+.sign-in-btn {
+    margin-left: 44%;
+    margin-right: 45%;
+    position: absolute;
+    top: 350px;
+    z-index: 550;
+}
+
+.homepage {
+  background-image: image-url("twitter.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-height: 100%;
+  max-width: 100%
+}
+
+.pattern {
+    background-repeat: repeat;
+    background-attachment:scroll;
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0
+}
+
+.divider {
+    background-image:url(../images/divider.png);
+    display:block;
+    width:300px;
+    height:35px;
+    margin:10px auto
+}
+
+#colorize {
+    color:#f1c40f;
+    font-family:'Lato',sans-serif;
+    font-size:40px
+}
+
+
+/*BACKGROUND*/
+.big-background {
+    z-index:550;
+    text-align:center;
+    height:100%;
+    min-height:100%;
+    position:relative;
+    overflow:hidden
+}
+
+.big-background .big-background-container {
+    width:830px;
+    max-width:100%;
+    display:inline-block;
+    position:absolute;
+    top:13%;
+    left:50%;
+    -webkit-transform:translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%);
+    -o-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%)
+}
+
+.big-background-title {
+    font-family:'Helvetica';
+    font-size:78px;
+    color:#fff;
+    font-weight:500;
+    text-transform:uppercase;
+    text-align:center;
+    margin-bottom:22px;
+    padding-top:20px;
+    display:inline-block;
+    background-attachment:scroll;
+    background-repeat:repeat-x;
+    background-position:top center
+}
+
+a.big-background-btn {
+    font-family:'Lato',sans-serif;
+    font-size:13px;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:#fff;
+    background:transparent;
+    border:2px solid #fff;
+    padding:10px 14px;
+    cursor:pointer;
+    letter-spacing:2px;
+    text-align:center;
+    display:inline-block;
+    -webkit-transition:.4s background ease;
+    -moz-transition:.4s background ease;
+    -o-transition:.4s background ease;
+    transition:.4s background ease;
+}
+
+.big-background-btn:hover {
+    color:#fff;
+    background:rgba(255,255,255,0.20)
+}
+
+.big-background-default-image {
+    background:url(../images/sunset.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;
+    width:100%;
+    height:100%;
+    z-index:0;
+    backface-visibility:hidden
+}
+
+
+/*ABOUT SECTION*/
+.about-section {
+    font-family:'Lato',sans-serif;
+    color:#7f8c8d;
+    background:#fff;
+    margin-top: 15px;
+    padding:60px 20px
+}
+
+.about-small-section-container {
+    text-align:center;
+    padding-bottom:50px
+}
+
+.about-section-title {
+    font-family:'Raleway',sans-serif;
+    font-size:40px;
+    background:#fff;
+    color:#3d566e;
+    padding:0 35px;
+    margin-bottom:22px;
+    background-attachment:scroll;
+    background-repeat:repeat-x;
+    background-position:center center;
+    text-transform:uppercase
+}
+
+a.about-section-btn {
+    font-family:'Lato',sans-serif;
+    font-size:13px;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:#34495e;
+    background:transparent;
+    border:2px solid #34495e;
+    padding:10px 14px;
+    cursor:pointer;
+    letter-spacing:2px;
+    text-align:center;
+    display:inline-block;
+    -webkit-transition:.4s background ease;
+    -moz-transition:.4s background ease;
+    -o-transition:.4s background ease;
+    transition:.4s background ease;
+}
+
+.about-section-btn:hover {
+    color:#fff;
+    background: #34495e;
+}
+
+
+/*SMALL BACKGROUNDS*/
+.small-background-section {
+    font-family:'Raleway',sans-serif;
+    padding:100px 0;
+    position:relative;
+    width:100%;
+    overflow:hidden
+}
+
+.small-background-container {
+    position:relative;
+    text-align:center
+}
+
+.small-background-title {
+    font-family:'Raleway',sans-serif;
+    font-size:40px;
+    font-weight:300;
+    text-transform:uppercase;
+    color:#f1c40f;
+    padding:0 35px;
+    margin-bottom:22px;
+    background-attachment:scroll;
+    background-repeat:repeat-x;
+    background-position:center center
+
+}
+
+.socials a {
+    color:#fff
+}
+
+.socials a:hover {
+    color:#bdc3c7
+}
