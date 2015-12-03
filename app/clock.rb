@@ -7,7 +7,7 @@ module Clockwork
     puts "Running #{job}"
   end
 
-  every(2.minutes, 'update records for all users') do
+  every(30.minutes, 'update records for all users') do
     User.where.not(screen_name: nil).each do |user|
       Twitter.update_records(user.id)
     end
