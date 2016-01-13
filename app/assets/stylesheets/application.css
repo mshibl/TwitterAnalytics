@@ -45,6 +45,10 @@ ul li {
     position:relative
 }
 
+.profile-display{
+  padding-top: 50px;
+}
+
 
 /*MEDIA QUERIES*/
 @media screen and (max-width: 768px) {
