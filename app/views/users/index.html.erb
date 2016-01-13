@@ -2,6 +2,42 @@
   <%= stylesheet_link_tag 'application'%>
 </head>
 
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#"><%= button_to "logout", {:controller => 'sessions', :action => 'destroy', :id => session[:user_id] }, {:method => :delete}%></a>
+                    </li>
+                    <li>
+                        <a href="#"><%=button_to "Register", {:controller => 'users', :action => 'signup'}, {id: 'register-button', class: 'button'} %></a>
+                    </li>
+                    <li>
+                      <%unless User.find(session[:user_id]).screen_name == @screen_name%>
+                        <% main_user = User.find(session[:user_id]).screen_name%>
+                        <a href="#"><%= button_to "Go Back", users_path(screen_name: main_user)%></a>
+                      <%end%>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form class="navbar-form navbar-right" role="search">
+                          <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search Twitter User">
+                          </div>
+                          <button type="submit" class="btn btn-default">Search</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
 <!-- Graph -->
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
@@ -13,40 +49,40 @@
 
 
 <div class="profile-display">
-  <table id="buttons">
-    <tr>
+  <!-- <table id="buttons"> -->
+    <!-- <tr> -->
   <!-- Logout Button -->
-      <td>
-        <p class="logout"><%= button_to "logout", {:controller => 'sessions', :action => 'destroy', :id => session[:user_id] }, {:method => :delete}%></p>
-      </td>
+      <!-- <td> -->
+        <!-- <p class="logout"><%#= button_to "logout", {:controller => 'sessions', :action => 'destroy', :id => session[:user_id] }, {:method => :delete}%></p> -->
+      <!-- </td> -->
 
   <!-- Email Registration -->
-      <td>
-        <h3><%=button_to "Register", {:controller => 'users', :action => 'signup'}, {id: 'register-button', class: 'button'} %></h3>
-      </td>
+      <!-- <td> -->
+        <!-- <h3><%#=button_to "Register", {:controller => 'users', :action => 'signup'}, {id: 'register-button', class: 'button'} %></h3> -->
+      <!-- </td> -->
 
 
   <!-- Search twitter users box -->
-        <%=form_tag("/users/show", method: "get") do %>
+<!--         <%#=form_tag("/users/show", method: "get") do %>
       <td>
-          <%=text_field_tag "screen_name", nil, options = {style:"height:3.05em; min-width: 15em; margin-left: .50em; margin-right: 0.50em; position: relative",  placeholder: "search twitter user"} %>
+          <%#=text_field_tag "screen_name", nil, options = {style:"height:3.05em; min-width: 15em; margin-left: .50em; margin-right: 0.50em; position: relative",  placeholder: "search twitter user"} %>
       </td>
       <td>
-          <%= submit_tag("Search")%>
-        <%end%>
+          <%#= submit_tag("Search")%>
+        <%#end%>
       </td>
-    </tr>
+    </tr> -->
 
   <!-- Button to go back if not on main account -->
-    <tr>
-    <%unless User.find(session[:user_id]).screen_name == @screen_name%>
+<!--     <tr>
+    <%#unless User.find(session[:user_id]).screen_name == @screen_name%>
       <td>
-        <% main_user = User.find(session[:user_id]).screen_name%>
+        <%# main_user = User.find(session[:user_id]).screen_name%>
         <p class="logout"><%= button_to "Go Back", users_path(screen_name: main_user)%></p>
       </td>
-    <%end%>
+    <%#end%>
     </tr>
-  </table>
+  </table> -->
 
   <!-- Flash Notices -->
   <% if flash[:notice] %>
