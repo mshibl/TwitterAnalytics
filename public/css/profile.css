@@ -1,0 +1,221 @@
+.navbar-brand img{
+	max-width:100%;
+	max-height:100%;
+}
+
+.navbar-brand {
+	height: 70px;
+}
+
+.navbar {
+	background-color: #7191AA;
+	border-color: transparent;
+	color: #FEFEFE;
+}
+
+#profile-page {
+	font-family: 'Roboto', sans-serif;
+	padding-top: 80px;
+}
+
+strong { font-weight: 500; }
+
+h3 {
+	font-size: 22px;
+    font-weight: 300;
+    line-height: 30px;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+h5 {
+    font-size: 14px;
+    margin: 0px;
+    font-weight: 200;
+    line-height: 30px;
+}
+
+
+.user-title {
+	padding-right: 15px;
+	padding-top: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.main-body{
+	padding-top: 15px;
+	background-color: #EDEDED
+}
+
+.second-navbar{
+	padding-bottom: 15px;
+}
+
+.logout, .home{
+	text-align: right;
+}
+
+.card-container {
+	  -webkit-perspective: 800px;
+   -moz-perspective: 800px;
+     -o-perspective: 800px;
+        perspective: 800px;
+        margin-bottom: 30px;
+    width: 100%;
+	height: 420px;
+	border-radius: 4px;
+}
+
+.card .cover{
+    height: 105px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+}
+.card .cover img{
+    width: 100%;
+}
+
+.card .user{
+    border-radius: 50%;
+    /*display: block;*/
+    height: 120px;
+    margin: -55px auto 0;
+    overflow: hidden;
+    width: 120px;
+}
+.card .user img{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 4px solid #FFFFFF;
+    width: 100%;
+}
+
+.card .content{
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    padding: 10px 20px 20px;
+}
+.card .content .main {
+    min-height: 160px;
+}
+
+.card .name {
+    font-size: 22px;
+    line-height: 28px;
+    margin: 10px 0 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.card .email{
+    color: #999999;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card {
+	top: 0;
+	left: 0;
+	background-color: #FFF;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    color: #444444;
+}
+
+.post-tweet{
+	padding: 10px;
+}
+
+.user-suggestions{
+    text-align: center;
+    display:block;
+    overflow:auto;
+}
+
+.user-suggestions img, .user-suggestions button{
+    margin-top: 25%;
+    margin-bottom: 25%;
+}
+
+#custom-search-form {
+    margin:0;
+    margin-top: 5px;
+    padding: 0;
+}
+
+#custom-search-form .search-query {
+    padding-right: 3px;
+    padding-right: 4px \9;
+    padding-left: 3px;
+    padding-left: 4px \9;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: width  0.2s ease-in-out;
+-moz-transition:width  0.2s ease-in-out;
+-o-transition: width  0.2s ease-in-out;
+transition: width  0.2s ease-in-out;
+}
+
+#custom-search-form button {
+    border: 0;
+    background: none;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.search-query:focus + button {
+    z-index: 3;   
+}   
+.search-query:focus{
+    width: 260px;
+}   
+
+.tweet-image{
+    width: 90%;
+    height: 90%;
+    margin: 15px;
+}
+
+.tweet-thumbnail{
+    margin-left: 15px;
+}
+
+.list-img{
+    margin-bottom: -70px;
+    width: 60%;
+}
+
+.list-card{
+    padding-top: 70px;
+}
+
+#relationship-card {
+    width: 130px;
+    padding: 0 10px 10px 10px;
+    margin-bottom: 30px;
+}
+
+#relationship-card h4 {
+    min-height: 60px;
+}
+
+#list-name{
+    text-align: center;
+}

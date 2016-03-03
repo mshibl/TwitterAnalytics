@@ -1,0 +1,12 @@
+<div class="col-md-6">
+	<h3 id="list-name">{{friendsList? 'Friends' : 'Followers'}}</h3>
+    <div class="col-xs-4" ng-repeat="friend in list">
+          <img class="list-img img-circle center-block card-img-top img-responsive" ng-src="{{friend.image}}">
+         <div class="card center-block text-center" id="relationship-card">
+          <div class="card-block list-card">
+            <h4><a ng-click="showUserProfile(this.friend.id)" href="">{{friend.first_name}} {{friend.last_name}}</a></h4>
+            <!-- <a href="#" class="btn btn-primary">Button</a> -->
+          </div>
+        </div>
+    </div>
+</div>

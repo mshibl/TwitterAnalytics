@@ -1,0 +1,30 @@
+<div class="col-md-3">
+     <div class="card-container">
+        <div class="card">
+                <div class="cover">
+                    <img src="/img/rotating_card_thumb.png"/>
+                </div>
+                <div class="user">
+                    <img class="img-circle" ng-src="{{targetUser.image}}"/>
+                </div>
+                <div class="content">
+                    <div class="main">
+                        <h3 class="name">{{targetUser.first_name}} {{targetUser.last_name}}</h3>
+                        <p class="email">{{targetUser.email}}</p>
+                        <h5>
+                            <span class="glyphicon glyphicon-hand-left"></span>
+                            <a href="" ng-click="getRelationshipsList(targetUser.id,'friends')">
+                                <strong>Friends: </strong>{{targetUser.friends_count}}
+                            </a>
+                        </h5>
+                        <h5>
+                            <span class="glyphicon glyphicon-hand-right"></span>
+                            <a href="" ng-click="getRelationshipsList(targetUser.id,'followers')">
+                                <strong>Followers: </strong>{{targetUser.followers_count}}
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+        </div> <!-- end card -->
+    </div> <!-- end card-container -->
+</div>

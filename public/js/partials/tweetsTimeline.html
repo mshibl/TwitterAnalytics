@@ -1,0 +1,40 @@
+<div class="col-md-6">
+    <div class="thumbnail" ng-if="tweetPermission">
+        <label>Share your thoughts</label>
+        <form name="tweetForm" novalidate>
+            <textarea ng-model="newTweet" rows="3" class="form-control" id="newTweet" name="tweet" form="tweetForm"></textarea>
+            <div class="row post-tweet">
+                <div class="col-md-2 col-md-offset-10">
+                    <input type="submit" class="btn btn-default" ng-click="postTweet(newTweet)" value="Post" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <h4>Posts</h4>
+    <div class="thumbnail" ng-repeat="tweet in tweets | orderBy: '-created_at' | limitTo: 50"> <!-- Tweet Container -->
+        <div class="row">
+            <div class="col-xs-2">
+                <a href="" ng-click="showUserProfile(tweet.user.id)"><img class='img-circle  tweet-image' alt="Brand" ng-src="{{tweet.user.image}}"></a>
+            </div>
+            <div class="col-xs-10">
+                <div class="caption-full">
+                    <h6 class="pull-right">{{tweet.created_at | date:'MM/dd/yyyy'}}</h6>
+                    <a href="" ng-click="showUserProfile(tweet.user.id)"><h6>{{tweet.user.first_name}} {{tweet.user.last_name}}</h6></a>
+                    <p>{{tweet.text}}</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">3 replies</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        4.0 stars
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

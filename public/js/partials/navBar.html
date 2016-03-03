@@ -1,0 +1,42 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <img id='thumbsup' class='navbar-brand navbar-left' alt="Brand" src="/img/thumbsup.png">
+        <a href="" ng-click="showUserProfile(currentUser.id)"><img class='img-circle navbar-brand navbar-right' alt="Brand" ng-src="{{currentUser.image}}">
+        <div class='user-title navbar-right'>
+            <h5><strong>{{currentUser.first_name}} {{currentUser.last_name}}</strong><br></h5>
+        </div>
+        </a>
+    </div>
+</nav>
+
+<div class="container second-navbar">
+    <div class="row">
+     
+        <div class="col-md-5">
+        	
+        	<!-- Search -->
+            <div class="input-group">
+                <form id="custom-search-form" class="form-search form-horizontal pull-right">
+                    <div class="input-append span12">
+                        <input type="text" class="search-query mac-style" placeholder="Search">
+                        <button type="submit" class="btn"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-md-offset-4 logout home">
+
+            <!-- Home Button -->
+            <button type="button" class="btn btn-default btn-sm" ng-click="showTweetsTimeline(); getUserData(currentUser.id)">
+              <span ng-class="'glyphicon glyphicon-home'"></span> Home
+            </button>
+
+            <!-- Logout Button -->
+            <button type="button" class="btn btn-default btn-sm" ng-click="logout()">
+                <span class="glyphicon glyphicon-log-out"></span> Log out
+            </button>
+
+        </div>
+    </div>
+</div>

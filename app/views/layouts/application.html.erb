@@ -1,19 +1,53 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Ft</title>
+<html lang="en" ng-app="shiftSampleApp">
+<head>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-  </head>
-  <body>
+  <!--
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <!--
+    application.css is where you put your styles
+  -->
 
-  <%= yield %>
+  <title>Shift | Coding Challenge</title>
 
-  </body>
+  <script src="/js/vendor/jquery-1.11.1.js"></script>
+  <script src="/js/vendor/angular.js"></script>
+  <script src="/js/vendor/angular-route.js"></script>
+  <script src="/bower_components/angular-messages/angular-messages.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- <link rel="stylesheet" href="/css/application.css"> -->
+  <!-- <link rel="stylesheet" href="/css/profile.css"> -->
+  <link rel="stylesheet" href="/css/animate.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/lightbox.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+
+  <script src="/js/application.js"></script>
+  <script src="/js/controllers/user_controller.js"></script>
+  <script src="/js/controllers/login_controller.js"></script>
+  <script src="/js/factories/http_interceptor_factory.js"></script>
+  <script src="/js/factories/user_factory.js"></script>
+  <script src="/js/factories/auth_factory.js"></script>
+
+
+  <base href="/">
+</head>
+<body>
+  <div ng-view></div>
+
+  <script src="/bower_components/angular-route-styles/route-styles.js"></script>
+</body>
 </html>
